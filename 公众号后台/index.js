@@ -13,7 +13,7 @@ app.use(xmlParser())
 const router = new Router()
 app.use(static(__dirname + '/'))
 
-// 验证
+// 验证消息
 router.get('/wechat', ctx => {
         console.log('校验url', ctx.url) 
         const {query} = url.parse(ctx.url, true)
