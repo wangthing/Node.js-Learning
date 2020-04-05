@@ -9,6 +9,8 @@ const conf = require('./config')
 const crypto = require('crypto') // 加密模块
 const xmlParser = require('koa-xml-body') //解析xml数据
 
+//just for test git
+
 app.use(xmlParser())
 const router = new Router()
 app.use(static(__dirname + '/'))
