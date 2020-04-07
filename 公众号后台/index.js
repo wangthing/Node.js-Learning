@@ -5,7 +5,7 @@ const static = require('koa-static')
 const xml2js = require('xml2js') // xml转化为json
 const app = new Koa()
 const url = require('url')
-const conf = require('./config')
+const conf = require('./config')  //个人的配置信息
 const crypto = require('crypto') // 加密模块
 const xmlParser = require('koa-xml-body') //解析xml数据
 
@@ -14,6 +14,8 @@ const xmlParser = require('koa-xml-body') //解析xml数据
 app.use(xmlParser())
 const router = new Router()
 app.use(static(__dirname + '/'))
+
+
 
 // 验证消息
 router.get('/wechat', ctx => {
@@ -50,7 +52,7 @@ router.post('/wechat', ctx => {
     const builder = new xml2js.Builder()
     let result;
     if(msg.Content.indexOf('node') !== -1) {
-        console.log("学习node")
+        
         result = builder.buildObject({
             xml: {
                 ToUserName: msg.FromUserName,
