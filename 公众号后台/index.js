@@ -19,7 +19,7 @@ app.use(static(__dirname + '/'))
 let tokenCache = {};
 
 // 验证消息
-router.get('/wechat', ctx => {
+router.get('/', ctx => {
 
     console.log('校验url', ctx.url) 
     const {query} = url.parse(ctx.url, true)
@@ -52,6 +52,11 @@ router.post('/wechat', ctx => {
     const {xml: msg} = ctx.request.body
     console.log('Receive:', msg)
     const builder = new xml2js.Builder()
+
+    if(!msg.Content) {
+        return;
+    }
+
     let result;
     if(msg.Content.indexOf('node') !== -1) {
         
@@ -88,7 +93,11 @@ router.post('/wechat', ctx => {
 })
 // 获取tonken
 
-utils.getToken(tokenCache)
+utils.getToken(tokenCache);
+utils.createMenus()
+utils.getMenus()
+utils.getUserLists()
+
 
 app.use(router.routes()); /*启动路由*/
 
