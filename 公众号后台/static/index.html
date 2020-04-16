@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
-    <script src="https://cdn.bootcss.com/qs/6.6.0/qs.js"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+
     <style>
         /* .cube-btn {
             margin: 10px 0;
@@ -17,28 +12,340 @@
 </head>
 
 <body>
-    <div id="app">
-        <cube-input v-model="value"></cube-input>
-        <cube-button @click='click'>Click</cube-button>
-        <img src="./222.jpg" alt="">
+    <div id="root">
+
     </div>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                value: 'input'
-            },
 
-            methods: {
-                click: function () {
-                    alert('click')
-                }
-            },
-            mounted: function () {
-
-            },
-        });
-    </script>
 </body>
+<script>
+    let width = document.documentElement.offsetWidth, height = document.documentElement.offsetHeight;
+    var data = {
+            "nodes": [{
+                "id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "name": "北京魔力象限科技有限公司",
+                "nodeType": "公司",
+                style: {
+                    fill: '#56facf',
+                    fontSize: 100,
+                },
+                x: width/2,
+                y: height/2
+            }, {
+                "id": "ent_159_1_ce-shi-yong-tu_gong-si/96315a0b169b46e66d77522b1b9fb023",
+                "name": "深圳市麦星投资管理有限公司",
+                "nodeType": "公司"
+            }, {
+                "id": "ent_159_1_ce-shi-yong-tu_gong-si/6d274a1ee7f69f06110dac6b75387149",
+                "name": "同渡势成（北京）投资管理有限责任公司",
+                "nodeType": "公司"
+            }, {
+                "id": "ent_160_1_ce-shi-yong-tu_shi-jian/02d21b9be1ddc21849465b1e5a85b96b",
+                "name": "2017年10月19日",
+                "nodeType": "时间"
+            }, {
+                "id": "ent_161_1_ce-shi-yong-tu_jian-cheng/085fbce555e7c8523cd8f7049efb871a",
+                "name": "闲豆",
+                "nodeType": "简称"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/9525e15468a4611f237b41d4df9e4107",
+                "name": "技术开发",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/e80c6e86cafb66cc5b3d1016905c4370",
+                "name": "技术咨询",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/b6496f76b5195061b669c6117bd1bc3e",
+                "name": "技术服务",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/72ea37646f2869d5b808e42d03eb4207",
+                "name": "技术推广",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/d674551828449319eb392a3122f51d35",
+                "name": "技术转让",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/a41622d744ac9c55f5266dcc90ac7599",
+                "name": "软件开发",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/4266ed13f0a217cd3a51cd37c2135ae7",
+                "name": "软件咨询",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/bfdc263e40e5870ae1c6cd172969033a",
+                "name": "基础软件服务",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/8dd00be6aa98f0e536ca635e66f5b369",
+                "name": "应用软件服务",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/ae0476c4d51e67384435674f884d30a5",
+                "name": "计算机系统服务",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/374eed7a320c38cde0587b85d595e368",
+                "name": "产品设计",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/a47102f0deebb983292f5ce7c84b735b",
+                "name": "文艺创作",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/02492bb2fe6556538aef0cd576203cae",
+                "name": "文化咨询",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/cfc089f7d2c4bd1de60b70fd7f8fd40a",
+                "name": "数据处理",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/6ee3978dda9cbd84be7c9c3536c530b1",
+                "name": "销售自行开发后的产品",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/54c8ed5e58f3c7c69ec3dd4e8ea4a2ea",
+                "name": "节能减排",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/8a68be7b3f4fdaa74c280704fa9edf50",
+                "name": "新能源",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/5e804950f3c53a8f1d304020bca846b2",
+                "name": "新技术",
+                "nodeType": "从事领域"
+            }, {
+                "id": "ent_166_1_ce-shi-yong-tu_rong-zi-jin-e/79df2052ef649f51455a4d2e7915a5ed",
+                "name": "7000万人民币",
+                "nodeType": "融资金额"
+            }],
+            "edges": [{
+                "id": "rel_203_1_ce-shi-yong-tu_tou-zi-fang/24ecd3324db4fecb175d4760d4b35ca5",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_159_1_ce-shi-yong-tu_gong-si/96315a0b169b46e66d77522b1b9fb023",
+                "name": "投资方"
+            }, {
+                "id": "rel_203_1_ce-shi-yong-tu_tou-zi-fang/0ac1112360b09251af32f4bd9ea2b24c",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_159_1_ce-shi-yong-tu_gong-si/6d274a1ee7f69f06110dac6b75387149",
+                "name": "投资方"
+            }, {
+                "id": "rel_204_1_ce-shi-yong-tu_rong-zi-shi-jian/f2d75ebd4cf3a0cc70504acf559fb30c",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_160_1_ce-shi-yong-tu_shi-jian/02d21b9be1ddc21849465b1e5a85b96b",
+                "name": "融资时间"
+            }, {
+                "id": "rel_205_1_ce-shi-yong-tu_jian-cheng/b94e8671ea17c8e82a4fd547a36465a8",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_161_1_ce-shi-yong-tu_jian-cheng/085fbce555e7c8523cd8f7049efb871a",
+                "name": "简称"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/c2886491ae1d94cde825fa3741645781",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/9525e15468a4611f237b41d4df9e4107",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/7818868310655e1fc3445b2611971562",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/e80c6e86cafb66cc5b3d1016905c4370",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/a66366ce1c10cb85aca4f79dd38c8342",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/b6496f76b5195061b669c6117bd1bc3e",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/218de7a0e3cedd92428c0c3c5fddb3cc",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/72ea37646f2869d5b808e42d03eb4207",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/2bb197b62d629dd6f29cde014484d593",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/d674551828449319eb392a3122f51d35",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/cb905274badd8c5ad665166240dcfec2",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/a41622d744ac9c55f5266dcc90ac7599",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/14631bfc56d11d888cb2b23d4f3fef24",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/4266ed13f0a217cd3a51cd37c2135ae7",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/d34ea34eaaf9599a3a5502e686b57382",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/bfdc263e40e5870ae1c6cd172969033a",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/e0519ca1dfc3c3efa9d3f0014d7301f6",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/8dd00be6aa98f0e536ca635e66f5b369",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/65df250584e7e714aba5d9af7552689f",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/ae0476c4d51e67384435674f884d30a5",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/f91b25f473eb6af8c092658f80341186",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/374eed7a320c38cde0587b85d595e368",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/fb49fe78860c03d4f3f11ca18a9f9112",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/a47102f0deebb983292f5ce7c84b735b",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/129b38963966a5dca5969c195c3d4566",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/02492bb2fe6556538aef0cd576203cae",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/7dddcab649f0df4fae0617690ead51cb",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/cfc089f7d2c4bd1de60b70fd7f8fd40a",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/796d157cedaaf3aa1d9564ca1fde3408",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/6ee3978dda9cbd84be7c9c3536c530b1",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/8e89a4e6b2190d950c152fa052de40ba",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/54c8ed5e58f3c7c69ec3dd4e8ea4a2ea",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/7e88d98c31ce2265e995d0511163f8c2",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/8a68be7b3f4fdaa74c280704fa9edf50",
+                "name": "从事领域"
+            }, {
+                "id": "rel_206_1_ce-shi-yong-tu_cong-shi-ling-yu/f4ff7eef0975800ff21689c62f58076e",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_162_1_ce-shi-yong-tu_cong-shi-ling-yu/5e804950f3c53a8f1d304020bca846b2",
+                "name": "从事领域"
+            }, {
+                "id": "rel_210_1_ce-shi-yong-tu_rong-zi-jin-e/cf03249bc0b7e07789f70808834e29cc",
+                "source_id": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+                "target_id": "ent_166_1_ce-shi-yong-tu_rong-zi-jin-e/79df2052ef649f51455a4d2e7915a5ed",
+                "name": "融资金额"
+            }],
+
+            "nodeId": "ent_159_1_ce-shi-yong-tu_gong-si/4d48b86a47a6fba2e42457f7e5f0f019",
+            "nodeTypeList": ["融资金额", "时间", "公司", "从事领域", "简称"],
+            "relationTypeList": ["融资金额", "融资时间", "投资方", "从事领域", "简称"]
+    }
+
+    var centerId  = data.nodeId;
+    let childNumber = data.edges.length;
+    data.edges.forEach((item, index) => {
+        item.source = item.source_id
+        item.target = item.target_id
+        item.label = item.name
+        let deg = Math.PI/childNumber;
+        
+        let r = (Math.min(height, width)/2)
+        if(item.id != centerId) {
+            
+            item.x = height/2 +  r*(Math.sin(deg*index));
+            item.y = width/2 +  r*(Math.cos(deg*index));
+            console.log(item.x, item.y)
+            
+        }
+    })
+    data.nodes.forEach(item => {
+        item.label = item.name
+    })
+
+    console.log(data)
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.3.1/dist/g6.min.js"></script>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    
+
+    class Hello extends React.Component {
+        constructor (props) {
+            super(props)
+            this.state = {
+                msg: "Hello Reatc & G6!"
+            }
+        }
+        render () {
+          return (
+              <div>
+                <h1>{this.state.msg}</h1>
+                <div id="mountNode"></div>  
+              </div>
+          )
+        }
+    }
+
+    ReactDOM.render(<Hello />,document.getElementById('root'));
+    const graph = new G6.Graph({
+        container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身
+        width: width, // Number，必须，图的宽度
+        height: height, // Number，必须，图的高度
+        layout: {                // Object，可选，布局的方法及其配置项，默认为 random 布局。
+            type: 'force',         // 指定为力导向布局
+            preventOverlap: true,  // 防止节点重叠
+            nodeSize: 80,       // 节点大小，用于算法中防止`节点重叠时的碰撞检测。由于已经在上一节的元素配置中设置了每个节点的 size 属性，则不需要在此设置 nodeSize。
+            linkDistance: 150
+        },
+        modes: {
+            default: [
+                {
+                    type: 'zoom-canvas',
+                    enableOptimize: true,
+                    sensitivity: 1,
+                    optimizeZoom: .5
+                },
+                {
+                    type: 'drag-node',
+                    updateEdge: true
+                },
+                {
+                    type: 'click-select',
+                    trigger: 'ctrl',
+                },
+                {
+                    type: 'tooltip',
+                    formatText(model) {
+                    return model.xxx;
+                    },
+                }
+            ]
+        },
+        defaultNode: {
+          size: 40,
+          labelCfg: {
+            style: {
+              fill: '#23456',
+            },
+          },
+        },
+        defaultEdge: {
+          labelCfg: {
+            autoRotate: true,
+          },
+        },
+    });
+    graph.data(data);
+    graph.render();
+</script>
 
 </html>
+
+
