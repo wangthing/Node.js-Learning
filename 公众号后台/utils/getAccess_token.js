@@ -6,7 +6,7 @@ var querystring = require('querystring');
 
 const APPID=conf.appid;
 const APPSECRET=conf.appsecret;
-console.log(token)
+
 let getToken = async function getToken (tokenCache) {
     
     const api=`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${APPSECRET}`
@@ -40,7 +40,7 @@ let createMenus = function () {
     
     axios.post(api,{menu: conf.menu})
         .then((res) => {
-            
+
             
         })
 }

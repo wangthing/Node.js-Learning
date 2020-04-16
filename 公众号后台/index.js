@@ -94,7 +94,7 @@ router.post('/wechat', ctx => {
 // 获取tonken
 
 utils.getToken(tokenCache);
-utils.createMenus()
+// utils.createMenus()
 utils.getMenus()
 utils.getUserLists()
 
@@ -104,4 +104,4 @@ app.use(router.routes()); /*启动路由*/
 app.use(router.allowedMethods());
 
 
-app.listen(80);
+app.listen(8000);
