@@ -18,7 +18,7 @@ let getToken = async function getToken (tokenCache) {
     
     let now = Date.now();
     console.log(now - token.updateTime)
-    if(now - token.updateTime < 72000) {
+    if((now - token.updateTime) < 720000) {
         console.log("还没有过期");
         return;
     }
@@ -27,7 +27,7 @@ let getToken = async function getToken (tokenCache) {
         if(err) {
             throw err;
         }
-        console.log(data)
+        
         fs.writeFile('./token.json', JSON.stringify(tokenCache), function (err) {
             console.log(err);
         })
@@ -40,7 +40,7 @@ let createMenus = function () {
     
     axios.post(api,{menu: conf.menu})
         .then((res) => {
-
+            console.log("创建自定义菜单成功！")
             
         })
 }

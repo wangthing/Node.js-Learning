@@ -1,23 +1,63 @@
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=0"
+    />
+    <link
+      href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.css"
+      rel="stylesheet"
+    />
 
     <style>
-        /* .cube-btn {
+      /* .cube-btn {
             margin: 10px 0;
         } */
+      .upload {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px;
+      }
+      .upload button {
+          width: 80%;
+          min-height: 30px;
+          margin: 10px 0;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <div id="root">
-
+  <body>
+    <div id="root" class="well">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="upload" id="upload-wrap">
+            <!--<input id="kv-explorer" type="file" multiple>-->
+            <!-- <input
+              type="file"
+              id="file"
+              name="uploadfile"
+              id="uploadfile"
+              multiple
+              class="file-loading"
+            /> -->
+            <button id="submit" type="button" class="btn btn-primary">
+              上传图片
+            </button>
+            <button id="scanner" type="button" class="btn btn-primary">
+                扫描二维码
+            </button>
+            <button id="location" type="button" class="btn btn-primary">
+                获取地理位置
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-</body>
-<script>
+  </body>
+  <!-- <script>
     let width = document.documentElement.offsetWidth, height = document.documentElement.offsetHeight;
     var data = {
             "nodes": [{
@@ -267,14 +307,132 @@
     })
 
     console.log(data)
-</script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.3.1/dist/g6.min.js"></script>
+</script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
+  <script>
+
+    
+    window.onload = function () {
+        //发送ajax请求--》jsconfigservlet,得到响应
+        var res = {};
+        $.ajax({
+            url:"http://wjp.5gzvip.idcfengye.com/jsconfig",
+            type:"GET",
+            async:false,//同步
+            dataType:"json",
+            success:function(data){
+                res = data;
+                console.log(res);
+                
+
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: 'wx290a7761d5a4aec2', // 必填，公众号的唯一标识
+                    timestamp: res.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: res.noncestr, // 必填，生成签名的随机串
+                    signature: res.signature,// 必填，签名
+                    
+                    jsApiList: ["chooseImage", "scanQRCode","openLocation",'getLocation'] // 必填，需要使用的JS接口列表
+                });
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+
+
+       
+      wx.ready(function () {
+        console.log("statr");
+        wx.checkJsApi({
+          jsApiList: ["chooseImage", "scanQRCode"], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+          success: function (res) {
+            console.log(res);
+          },
+        });
+      });
+      wx.error(function (err) {
+        console.log("err");
+      });
+      
+      document.getElementById("submit").onclick = function (e) {
+        let file = document.getElementById("file");
+        wx.chooseImage({
+          count: 1, // 默认9
+          sizeType: ["original", "compressed"],
+          sourceType: ["album", "camera"],
+          success: function (res) {
+            MylocalId = res.localIds;
+            console.log(MylocalId,res)
+            wx.uploadImage({
+              localId: MylocalId,
+              isShowProgressTips: 1,
+              success: function (res) {
+                var serverId = res.serverId;
+              },
+            });
+          },
+        });
+      };
+
+      document.getElementById("scanner").onclick = function (e) {
+        wx.scanQRCode({
+			  needResult: 0,
+			  scanType: ["qrCode","barCode"],
+			  success: function (res) {
+                var result = res.resultStr; 			  
+            }
+		});
+
+      }
+
+      document.getElementById('location').onclick = function (e) {
+        
+                var latitude;
+                var longitude;
+                var speed;
+                var accuracy;
+                wx.getLocation({
+                    type: 'wgs84', 
+                    success: function (res) {
+                        latitude = res.latitude; 
+                        longitude = res.longitude; 
+                        speed = res.speed; 
+                        accuracy = res.accuracy;
+                        wx.openLocation({
+                            latitude: latitude, 
+                            longitude: longitude, 
+                            name: '', 
+                            address: '',
+                            scale: 1, 
+                            infoUrl: '' 
+                        });
+                    }
+                });
+                
+
+      
+    };
+}
+  </script>
+
+  <!-- <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.3.1/dist/g6.min.js"></script>
 <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
 <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
-<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
-<script type="text/babel">
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script> -->
+  <!-- <script type="text/babel">
     
+    wx.ready(function(){
+		wx.checkJsApi({
+		  jsApiList: ['chooseImage','scanQRCode'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+		  success: function(res) {
+              console.log(res);
+		  }
+		});
+	});
+
 
     class Hello extends React.Component {
         constructor (props) {
@@ -294,6 +452,8 @@
     }
 
     ReactDOM.render(<Hello />,document.getElementById('root'));
+    
+    
     const graph = new G6.Graph({
         container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身
         width: width, // Number，必须，图的宽度
@@ -344,8 +504,7 @@
     });
     graph.data(data);
     graph.render();
-</script>
 
+    console.log(wx);
+</script> -->
 </html>
-
-

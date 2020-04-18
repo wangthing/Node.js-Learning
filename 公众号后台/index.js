@@ -9,19 +9,70 @@ const conf = require('./config')  //个人的配置信息
 const crypto = require('crypto') // 加密模块
 const xmlParser = require('koa-xml-body') //解析xml数据
 const axios = require('axios')
-
+const fs = require('fs')
 const utils = require('./utils/getAccess_token')
 
 app.use(xmlParser())
 const router = new Router()
 app.use(static(__dirname + '/'))
+let token = require('./token.json')
+
+// 对于任何请求，app将调用该异步函数处理请求：
+app.use(async (ctx, next) => {
+
+    await next();
+   
+    
+});
 
 let tokenCache = {};
+router.get('/jsconfig', async (ctx) => {
+    let url = ctx.request.header.referer
+    let timestamp = Date.now();
+    let noncestr =  'sjnxashjnxask';
+    let access_token = token.access_token
+    
+    if(!token.ticket || !token.ticket.jsapi_ticket || (Date.now() - token.ticket.time > 720000)) {
+        
+        var res = await axios.get(`https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${access_token}&type=jsapi`)
+        
+            let jsapi_ticket = res.data.ticket;
+            console.log(jsapi_ticket, res.data);
+            fs.readFile('./token.json', function (err, data) {
+                if(err) {
+                    throw err;
+                }
+                token.ticket = {
+                    jsapi_ticket: jsapi_ticket,
+                    time: Date.now()
+                };
+                
+                fs.writeFile('./token.json', JSON.stringify(token), function (err) {
+                })
+            })
+    
+        
+    }
+        console.log("zhijiegan直接干")
+        console.log(token)
+        let str =  `jsapi_ticket=${token.ticket.jsapi_ticket}&noncestr=${noncestr}&timestamp=${timestamp}&url=${url}`
+        let signature = crypto.createHash('sha1').update(str).digest('hex');
+        let result = {
+            noncestr,
+            timestamp,
+            signature,
+            url,
+            jsapi_ticket:token.ticket.jsapi_ticket
+        }
+        
+        ctx.response.body = result;
+
+})
+
 
 // 验证消息
-router.get('/', ctx => {
+router.get('/', (ctx, next) => {
 
-    console.log('校验url', ctx.url) 
     const {query} = url.parse(ctx.url, true)
     const {
             signature, // 微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
@@ -29,30 +80,29 @@ router.get('/', ctx => {
             nonce, // 随机数
             echostr // 随机字符串
     } = query
-    console.log('wechat', query)
 
     // 将 token timestamp nonce 三个参数进行字典序排序并用sha1加密
     let str = [conf.token, timestamp, nonce].sort().join('');
-    console.log('str',str)
     let strSha1 = crypto.createHash('sha1').update(str).digest('hex');
-        console.log(`自己加密后的字符串为:${strSha1}`); 
-        console.log(`微信传入的加密字符为:${signature}`); 
-        console.log(`两者比较结果为:${signature == strSha1}`);
 
         // 签名对比，相同则按照微信要求返回echostr参数值
-      if (signature == strSha1) {
-            ctx.body = echostr
-        } else {
-                ctx.body = "你不是微信" }
+    if (signature == strSha1) {
+        ctx.body = echostr
+    } else {
+            ctx.body = "你不是微信" 
         }
+
+    return next();
+    }
+
+    
 )
 
 // 接受信息
 router.post('/wechat', ctx => {
     const {xml: msg} = ctx.request.body
-    console.log('Receive:', msg)
     const builder = new xml2js.Builder()
-
+    console.log(msg)
     if(!msg.Content) {
         return;
     }
@@ -95,8 +145,8 @@ router.post('/wechat', ctx => {
 
 utils.getToken(tokenCache);
 // utils.createMenus()
-utils.getMenus()
-utils.getUserLists()
+// utils.getMenus()
+// utils.getUserLists()
 
 
 app.use(router.routes()); /*启动路由*/

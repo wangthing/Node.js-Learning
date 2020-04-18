@@ -29,7 +29,7 @@ module.exports={
                     {
                         "type": "view", 
                         "name": "跑步记录", 
-                        "url": "http://www.soso.com/"
+                        "url": "http://wjp.5gzvip.idcfengye.com/static/index.html"
                     }, 
                     {
                         "type": "view", 
